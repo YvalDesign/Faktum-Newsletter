@@ -3,6 +3,33 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Impressum">
-  <h1>Impressum</h1>
-  <ul></ul>
+  <div class="impr">
+    <h1>Impressum</h1>
+    <ul>
+      <li>
+        Jan Pascal Hellmann <br /> Yves-Alexander Krohn <br /> Julian Celian Schultheiß
+      </li>
+      <li>Faktum GbR</li>
+      <li>Andreasstraße 2a <br /> 31134 Hildesheim <br /> Deutschland</li>
+      <li>E-Mail: info@faktum-app.de</li>
+    </ul>
+  </div>
+
+  <style>
+    .impr {
+      display: flex;
+      flex-direction: column;
+      margin-inline: auto;
+      padding: 200px;
+
+      align-items: center;
+    }
+    h1 {
+      color: var(--text);
+    }
+
+    li {
+      color: var(--text);
+    }
+  </style>
 </Layout>
