@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import insta from "../assets/instagram.png";
+import linked from "../assets/linkedin.png";
+import tiktok from "../assets/social-media.png";
+---
+
+<footer class="footer">
+  <a href="Impressum">Impressum</a>
+  <div class="socials">
+    <a href="https://www.instagram.com/faktum_politik/"
+      ><Image src={insta} class="social" alt="Instagram Logo" /></a
+    >
+    <a href="https://www.tiktok.com/@faktum_politik?lang=de-DE"
+      ><Image src={linked} class="social" alt="LinkedIn Logo" /></a
+    >
+    <a href="https://www.tiktok.com/@faktum_politik?lang=de-DE"
+      ><Image src={tiktok} class="social" alt="TikTok Logo" /></a
+    >
+  </div>
+
+  <style>
+    .footer {
+      display: flex;
+      position: absolute;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      left: 0;
+      right: 0;
+      margin-top: 5rem;
+    }
+    @media (min-width: 620px) {
+      .footer {
+        margin-top: 12rem;
+      }
+    }
+    @media (min-width: 720px) {
+      .footer {
+        margin-top: 20rem;
+      }
+    }
+    @media (min-width: 800px) {
+      .footer {
+        margin-top: 27rem;
+      }
+    }
+    @media (min-width: 900px) {
+      .footer {
+        margin-top: 35rem;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--upgb);
+      font-size: 12px;
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: row;
+      gap: 0.8rem;
+    }
+
+    .social {
+      width: 30px;
+      height: auto;
+    }
+    @media (min-width: 1000px) {
+      .footer {
+        padding-right: 50%;
+        padding-left: 5%;
+        margin-top: -5rem;
+      }
+    }
+  </style>
+</footer>

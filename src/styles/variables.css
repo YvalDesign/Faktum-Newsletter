@@ -1,0 +1,15 @@
+:root{
+    /* Farben*/
+    --grad1: #eecb88;
+    --grad2: #C86f4a;
+    --bg: #23252a;
+    --text: #ffffff;
+    --tgrey: #b1b1b1;
+
+    /* Fonts*/
+    --arth: "articulat-heavy-cf", sans-serif;
+    --art: "articulat-cf," sans-serif;
+    --upgb: "upgrade-lights", sans-serif;
+    --upg: "upgrade", sans-serif;
+
+}

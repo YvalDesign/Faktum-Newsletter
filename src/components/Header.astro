@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/Logo.png";
+---
+
+<header>
+  <div class="header">
+    <Image src={logo} alt="Logo von Faktum" format="avif" class="logo" />
+  </div>
+
+  <style>
+    .header {
+      position: absolute;
+      display: flex;
+      left: 0;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+      padding-top: 2rem;
+      z-index: 5;
+      background: transparent;
+    }
+    .logo {
+      display: block;
+      height: 25px;
+      width: auto;
+    }
+
+    @media (max-width: 1000px) {
+      .logo {
+        height: 22px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .header {
+        padding-top: 1rem;
+      }
+      .logo {
+        height: 18px;
+      }
+    }
+  </style>
+</header>
