@@ -16,7 +16,7 @@ export const onRequestPost: PagesFunction = async (context) => {
         subject: "Neue Newsletter-Anmeldung",
       },
     ],
-    from: { email: "no-reply@deine-domain.de" },
+    from: { email: "no-reply@faktum-app.de" },
     content: [
       {
         type: "text/plain",
