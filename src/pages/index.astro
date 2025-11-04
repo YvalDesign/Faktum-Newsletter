@@ -15,15 +15,20 @@ import mockup from "../assets/appmockup.png";
           Du willst keine neuen Updates zu Faktum verpassen? Dann melde dich
           kostenlos bei unserem Newsletter an!
         </p>
-        <div class="input-wrapper">
+        <form method="POST" action="/api/subscribe" class="input-wrapper">
           <input
             type="email"
-            id="email"
             name="email"
             placeholder="Deine E-Mail..."
+            required
           />
+
+          <label class="optin">
+            <input type="checkbox" name="optin" class="check" required />
+            Ich stimme der Verarbeitung meiner Daten zu.
+          </label>
           <button> VERPASSE NICHTS MEHR! </button>
-        </div>
+        </form>
       </div>
 
       <Image
@@ -107,6 +112,19 @@ import mockup from "../assets/appmockup.png";
       max-width: 500px;
       box-sizing: border-box;
       z-index: 2;
+    }
+
+    .optin {
+      color: white;
+      font-family: var(--upgb);
+      display: flex;
+      padding: 2vw;
+    }
+
+    .check {
+      display: block;
+      width: 5vw;
+      margin-right: 4%;
     }
 
     button {
