@@ -8,7 +8,6 @@ export const onRequestPost: PagesFunction = async (context) => {
     return new Response("Fehlende Daten", { status: 400 });
   }
 
-  // Beispiel: Weiterleiten via Mailchannels (kostenlos mit Cloudflare)
   const payload = {
     personalizations: [
       {
@@ -16,11 +15,14 @@ export const onRequestPost: PagesFunction = async (context) => {
         subject: "Neue Newsletter-Anmeldung",
       },
     ],
-    from: { email: "no-reply@faktum-app.de" },
+    from: {
+      email: "noreply@example.com", // 🔁 Später ändern zu: "no-reply@faktum-app.de"
+      name: "Faktum Newsletter",
+    },
     content: [
       {
         type: "text/plain",
-        value: `Neue Newsletter-Anmeldung: ${email}`,
+        value: `Neue Newsletter-Anmeldung:\nE-Mail: ${email}`,
       },
     ],
   };
@@ -33,7 +35,10 @@ export const onRequestPost: PagesFunction = async (context) => {
 
   if (response.ok) {
     return Response.redirect("/?success=true", 303);
-  }
+  } else {
+    const errorText = await response.text(); // 🔍 Fehlertext loggen
+    console.log("Fehler beim Senden über MailChannels:", errorText);
 
-  return new Response("Fehler beim Versenden", { status: 500 });
+    return new Response("Fehler beim Versenden", { status: 500 });
+  }
 };
