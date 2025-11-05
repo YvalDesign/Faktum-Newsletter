@@ -1,39 +1,39 @@
-export const onRequestPost: PagesFunction = async (context) => {
-  const formData = await context.request.formData();
+import type { APIRoute } from 'astro';
+import nodemailer from 'nodemailer';
 
-  const email = formData.get("email");
-  const optin = formData.get("optin");
+export const POST: APIRoute = async ({ request }) => {
+  const formData = await request.formData();
+  const email = formData.get('email');
+  const optin = formData.get('optin');
 
   if (!email || !optin) {
-    return new Response("Fehlende Daten", { status: 400 });
+    return new Response('Fehlende Daten', { status: 400 });
   }
 
-  const payload = {
-    personalizations: [
-      {
-        to: [{ email: "info@faktum-app.de" }],
-        subject: "Neue Newsletter-Anmeldung",
-      },
-    ],
-    from: { email: "noreply@faktum-app.de" },
-    content: [
-      {
-        type: "text/plain",
-        value: `Neue Newsletter-Anmeldung: ${email}`,
-      },
-    ],
-  };
-
-  const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+  // Konfiguriere SMTP Zugangsdaten (IONOS)
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ionos.de',
+    port: 587,
+    secure: false, // TLS verwenden
+    auth: {
+      user: 'info@faktum-app.de', // <- Anpassen!
+      pass: 'Faktumesgehtlos1_',                   // <- Anpassen!
+    },
   });
 
-  if (response.ok) {
-    return Response.redirect("/?success=true", 303);
-  }
+  try {
+    await transporter.sendMail({
+      from: '"Newsletter" <info@faktum-app.de>',
+      to: 'info@faktum-app.de',
+      subject: 'Neue Newsletter-Anmeldung',
+      text: `Neue Anmeldung: ${email}`,
+    });
 
-  const error = await response.text();
-  return new Response("Fehler beim Versenden:\n" + error, { status: 500 });
+    return new Response(
+      null,
+      { status: 303, headers: { Location: '/?success=true' } }
+    );
+  } catch (err: any) {
+    return new Response('Fehler beim Mailversand: ' + err.message, { status: 500 });
+  }
 };
