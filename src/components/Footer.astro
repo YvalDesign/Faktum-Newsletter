@@ -6,11 +6,15 @@ import tiktok from "../assets/social-media.png";
 ---
 
 <footer class="footer">
-  <a href="/impressum">Impressum</a>
+  <div class="pages">
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutzerklärung</a>
+  </div>
   <div class="socials">
     <a href="https://www.instagram.com/faktum_politik/"
       ><Image src={insta} class="social" alt="Instagram Logo" /></a
     >
+
     <a href="https://www.linkedin.com/company/faktum-app/about/"
       ><Image src={linked} class="social" alt="LinkedIn Logo" /></a
     >
@@ -38,6 +42,13 @@ import tiktok from "../assets/social-media.png";
       font-size: 12px;
     }
 
+    .pages {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      gap: 50%;
+    }
+
     .socials {
       display: flex;
       flex-direction: row;
@@ -52,7 +63,7 @@ import tiktok from "../assets/social-media.png";
       .footer {
         padding-right: 50%;
         padding-left: 5%;
-        margin-top: -5rem;
+        margin-top: -3rem;
       }
     }
   </style>
