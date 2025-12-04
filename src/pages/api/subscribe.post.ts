@@ -1,8 +1,5 @@
 import type { APIRoute } from "astro";
 
-console.log("RESEND_API_KEY:", import.meta.env.RESEND_API_KEY);
-
-
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
   const email = formData.get("email")?.toString();
@@ -12,10 +9,11 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response("Fehlende Daten", { status: 400 });
   }
 
-  // Resend API-Key aus Cloudflare Environment Variable
+  // Resend API-Key aus Cloudflare Environment Variable (Pages-kompatibel)
   const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
   if (!RESEND_API_KEY) {
+    console.error("Resend API Key fehlt");
     return new Response("Resend API Key fehlt", { status: 500 });
   }
 
@@ -38,6 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!response.ok) {
       const errText = await response.text();
+      console.error("Fehler bei Resend:", errText);
       return new Response("Fehler bei Resend: " + errText, { status: 500 });
     }
 
@@ -46,6 +45,7 @@ export const POST: APIRoute = async ({ request }) => {
       headers: { Location: "/?success=true" },
     });
   } catch (error: any) {
+    console.error("Serverfehler:", error.message);
     return new Response("Serverfehler: " + error.message, { status: 500 });
   }
 };
