@@ -1,7 +1,7 @@
 name = "faktum-newsletter"
-type = "javascript"
 compatibility_date = "2025-12-04"
 
-[build]
-command = "npm run build"
-directory = "dist" 
+pages_build_output_dir = "./dist"
+
+[vars]
+RESEND_API_KEY = "re_gVCvfcSi_ML47NhxcHYKPXeCdw97y2U5L"

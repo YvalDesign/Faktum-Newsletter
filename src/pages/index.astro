@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import mockup from "../assets/mockupbundes.png";
+const url = new URL(Astro.request.url);
+const success = url.searchParams.get("success");
 ---
 
 <Layout title="Faktum Newsletter">
@@ -15,7 +17,7 @@ import mockup from "../assets/mockupbundes.png";
           Du willst keine neuen Updates zu Faktum verpassen? Dann melde dich
           kostenlos bei unserem Newsletter an!
         </p>
-        <form method="POST" action="/api/subscribe.post" class="input-wrapper">
+        <form method="POST" action="/api/subscribe" class="input-wrapper">
           <input
             type="email"
             name="email"
@@ -29,6 +31,11 @@ import mockup from "../assets/mockupbundes.png";
           </label>
           <button type="submit">VERPASSE NICHTS MEHR!</button>
         </form>
+        {success === "true" && (
+  <p style="color: green;">🎉 Danke für deine Anmeldung zum Newsletter!</p>
+)}
+
+
       </div>
 
       <Image
