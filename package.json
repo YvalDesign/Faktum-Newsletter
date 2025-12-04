@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",
-    "astro": "^5.15.1",
-    "nodemailer": "^7.0.10"
+    "astro": "^5.15.1"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
