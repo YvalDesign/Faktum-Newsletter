@@ -1,4 +1,6 @@
 import type { APIRoute } from "astro";
+console.log("RESEND_API_KEY:", RESEND_API_KEY);
+
 
 export const POST: APIRoute = async ({ request }) => {
   const formData = await request.formData();
