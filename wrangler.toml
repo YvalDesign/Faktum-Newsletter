@@ -1,13 +1,13 @@
 # wrangler.toml
 name = "faktum-newsletter"
-main = "dist/_worker.js"
-compatibility_date = "2025-12-04"
 type = "javascript"
+compatibility_date = "2025-12-04"
 
-[vars]
-RESEND_API_KEY = "set_in_dashboard_or_leave_blank_here"
+[build]
+command = "npm run build"
+cwd = "."
+upload = { format = "service-worker" }
 
-[site]
-bucket = "./dist"
-entry-point = "workers-site"
-
+[[bindings]]
+type = "secret_text"
+name = "RESEND_API_KEY"
