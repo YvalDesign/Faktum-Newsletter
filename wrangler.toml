@@ -1,0 +1,5 @@
+name = "faktum-newsletter"
+type = "javascript"
+
+[vars]
+RESEND_API_KEY = "DEIN_API_KEY_HIER"
