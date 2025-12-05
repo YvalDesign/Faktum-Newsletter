@@ -17,7 +17,7 @@ const success = url.searchParams.get("success");
           Du willst keine neuen Updates zu Faktum verpassen? Dann melde dich
           kostenlos bei unserem Newsletter an!
         </p>
-        <form method="POST" action="/api/subscribe" class="input-wrapper">
+        <form method="POST" action="/api/subscribe.post" class="input-wrapper">
           <input
             type="email"
             name="email"
@@ -31,11 +31,13 @@ const success = url.searchParams.get("success");
           </label>
           <button type="submit">VERPASSE NICHTS MEHR!</button>
         </form>
-        {success === "true" && (
-  <p style="color: green;">🎉 Danke für deine Anmeldung zum Newsletter!</p>
-)}
-
-
+        {
+          success === "true" && (
+            <p style="color: green;">
+              🎉 Danke für deine Anmeldung zum Newsletter!
+            </p>
+          )
+        }
       </div>
 
       <Image
